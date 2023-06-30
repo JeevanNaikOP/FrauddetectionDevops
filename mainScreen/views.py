@@ -34,10 +34,14 @@ def result(request):
     mcc = request.POST.get('input10')
     form = FraudDetectionForm()
     
+    username = os.getenv("USERNAME")
+    password = os.getenv("PASSWORD")
+
+    auth = (username,password)
     base_url = 'https://192.86.32.113:19443/frauddetectiondevopsapi/param?'
     end_url= base_url+'Zip='+zip+'&MerchantXName='+merchantName+'&User='+user+'&ErrorsX='+errors+'&MCC='+mcc+'&Card='+card+'&MerchantXCity='+merchantCity+'&MerchantXState='+merchntState+'&UseXChip='+usechip+'&Amount='+amount
 
-    response_scoring = requests.post(end_url, auth=('ibmuser', 'ibmuser'), headers=header,verify=False)
+    response_scoring = requests.post(end_url, auth=auth, headers=header,verify=False)
 
     json_out = (json.loads(response_scoring.text))
 
