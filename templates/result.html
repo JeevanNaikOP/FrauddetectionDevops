@@ -1,128 +1,174 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>Fraud Detection</title>
-	<style>
+    <meta charset="UTF-8">
+    <title>Fraud Detection</title>
+    <style>
         /* Reset styles */
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-  }
+        header {
+            height: 80px;
+            background-color: #29b6f6;
+            color: #fff;
+        }
 
-  header {
-	height: 80px;
-	background-color: #29b6f6;
-	color: #fff;
-}
+        .heading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-.heading{
-  display: flex;
-	justify-content: center;
-	align-items: center;
-}
-  
-  body {
-    font-family: Arial, sans-serif;
-    font-size: 16px;
-    line-height: 1.5;
-    color: #333;
-    background-color: #f4f4f4;
-  }
-  
-  /* Form styles */
-  form {
-    width: 80%;
-    max-width: 700px;
-    margin: 20px auto;
-    padding: 30px;
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            line-height: 1.5;
+            color: #333;
+            background-color: #f4f4f4;
+        }
 
-  .form-left { 
-    float: left;
-  }
+        /* Form container styles */
+        .form-container {
+            width: 60%;
+            margin-right: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            display: flex;
+        }
 
-  .form-right {
-    float : right;
-  }
-  
-  form label {
-    display: block;
-    margin-bottom: 5px;
-    font-size: 1.2em;
-    font-weight: 700;
-    color: #555;
-  }
-  
-  form input[type="text"],
-  form input[type="password"],
-  form textarea {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    font-size: 1.2em;
-    color: #555;
-    background-color: #f4f4f4;
-    border: 1px solid black;
-    border-radius: 5px;
-  }
-  
-  form input[type="text"]:focus,
-  form input[type="password"]:focus,
-  form textarea:focus {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        .form-container::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
 
-  }
-  
-  form button[type="submit"] {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    padding-top: 5px !important;
-    border: none;
-    border-radius: 5px;
-    background-color: #e63946;
-    color: #fff;
-    font-size: 1.2em;
-    font-weight: 700;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  form button[type="submit"]:hover {
-    background-color: #9d121d;
-  }
-  
-  
-  .sub{
-    margin-top: 400px !important;
-  }
-  
-  @media (max-width: 768px) {
-    form {
-      width: 90%;
-    }
-  }  
+        .form-left,
+        .form-right {
+            width: 50%;
+            padding-right: 90px;
+        }
+
+        .form-left{
+          float:left;
+        }
+
+        .form-right{
+          float: right;
+        }
+
+        form label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 1.2em;
+            font-weight: 700;
+            color: #555;
+        }
+
+        form input[type="text"],
+        form input[type="password"],
+        form textarea {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            font-size: 1.2em;
+            color: #555;
+            background-color: #f4f4f4;
+            border: 1px solid black;
+            border-radius: 5px;
+        }
+
+        form input[type="text"]:focus,
+        form input[type="password"]:focus,
+        form textarea:focus {
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        form button[type="submit"] {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            padding-top: 5px !important;
+            border: none;
+            border-radius: 5px;
+            background-color: #e63946;
+            color: #fff;
+            font-size: 1.2em;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        form button[type="submit"]:hover {
+            background-color: #9d121d;
+        }
+
+        /* Result container styles */
+        .result-container {
+            width: 35%;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        .result {
+            font-size: 1.2em;
+            color: #555;
+        }
+
+        /* Container styles */
+        .container {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 100px;
+            max-width: 1500px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .form-container,
+            .result-container {
+                width: 100%;
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+        }
+
+        .result-heading {
+          font-size: 1.2em;
+          font-weight: 700;
+          color: #555;
+      }
+      
+      .prediction,
+      .probability {
+          font-size: 1.2em;
+          color: #888;
+      }
     </style>
 </head>
 <body>
-	<header>
-		<h1 class="heading">Fraud Detection</h1>
+<header>
+    <h1 class="heading">Fraud Detection</h1>
     <div class="nav" style="padding:10px; align: center">
-    <a style="color: white; text-decoration: none; float: right" href="/mydatabase" > My database</a>
+        <h3 style="color: white; text-decoration: none; float: right"> Scoring endpoint: {{endpoint}}</h3>
     </div>
-	</header>
-	<main>
-        <form method="post" action="">
-            <form method="post" action="result">
+</header>
+<main>
+    <div class="container">
+        <div class="form-container">
+            <form method="post" action="">
                 {% csrf_token %}
                 <div class="form-left">
                     <label for="input2">Amount:</label>
@@ -138,7 +184,7 @@
                 </div>
                 <div class="form-right">
                     <label for="input1">User:</label>
-                    <input type="text" id="input1" name="input1" value= "{{user_profile}}" placeholder="">
+                    <input type="text" id="input1" name="input1" value="{{user_profile}}" placeholder="">
                     <label for="input3">Use chip:</label>
                     <input type="text" id="input3" name="input3" value="{{useChip}}">
                     <label for="input5">Merchant Name:</label>
@@ -146,11 +192,31 @@
                     <label for="input7">Merchant state:</label>
                     <input type="text" id="input7" name="input7" value="{{merchantState}}">
                     <label for="input9">Zip:</label>
-                    <input type="text" id="input9" name="input9" value={{zip}}>
+                    <input type="text" id="input9" name="input9" value="{{zip}}">
                 </div>
-            <h1 class='result'>Model prediction: {{res}}</h1>
-        </form>
-	</main>
+            </form>
+        </div>
+        <div class="result-container">
+          <div class="result">
+          <h3 class="result-heading">Prediction:</h3>
+          <p class="prediction">{{ prediction }}</p>
+          <h3 class="result-heading">Probability for Fraud:</h3>
+          <p class="probability">{{ prob1 }}</p>
+          <h3 class="result-heading">Probability for Non-Fraud:</h3>
+          <p class="probability">{{ prob2 }}</p>
+          </div>
+            {% load static %}
+            {% if not prediction %}
+            <div id="image-container">
+                <img src="{% static 'error.png' %}" alt="Fraud Image" style="max-width: 70%; height: auto;">
+            </div>
+            {% else %}
+            <div id="image-container">
+              <img src="{% static 'greenMark.png' %}" alt="NON Fraud Image" style="max-width: 70%; height: auto;">
+          </div>
+            {% endif %}
+        </div>
+    </div>
+</main>
 </body>
 </html>
-

@@ -41,9 +41,14 @@ def result(request):
 
     json_out = (json.loads(response_scoring.text))
 
+    prediction = json_out['MODELOUT']['MODELOUP']['PREDICTION']
+    prob1 = json_out['MODELOUT']['MODELOUP']['PROBABILITY'][0]
+    prob2 = json_out['MODELOUT']['MODELOUP']['PROBABILITY'][1]
+    scoring_ID = json_out['MODELOUT']['MODELOUP']['RES_ID']
 
-    return render(request,'result.html',{'form': form, 'user_profile':user,'res': json_out,'mcc':mcc, 'amount': amount,'useChip':str(usechip), 'card': card,
+    return render(request,'result.html',{'form': form, 'user_profile':user,'mcc':mcc, 'amount': amount,'useChip':str(usechip), 'card': card,
                                             'merchantName':merchantName,'errors':errors,'merchantState':merchntState,
-                                            'merchantCity':merchantCity, 'zip':zip})
+                                            'merchantCity':merchantCity, 'zip':zip, 'endpoint':scoring_ID, 
+                                            'prediction':prediction,'prob1':prob1,'prob2':prob2})
 
 
