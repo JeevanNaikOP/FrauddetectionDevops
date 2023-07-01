@@ -6,12 +6,14 @@ services:
     build: ./nginx
     volumes:
       - static:/static
+    env_file:
+      - .env
     ports:
       - "9033:80"
     depends_on:
       - django_gunicorn
     networks:
-      - mynetwork
+      - fraud_devops_network
   django_gunicorn:
     container_name: django_gunicorn
     volumes:
@@ -23,8 +25,8 @@ services:
     ports:
       - "8000"
     networks:
-      - mynetwork
+      - fraud_devops_network
 volumes:
   static:
 networks:
-  mynetwork:
+  fraud_devops_network:
