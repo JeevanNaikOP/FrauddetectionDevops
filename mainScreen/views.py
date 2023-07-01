@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from .forms import FraudDetectionForm
-import sweetify
 import os
 import json
 import requests
@@ -12,12 +11,6 @@ def index(request):
     return render(request,'index.html',{'form': form})
 
 def result(request):
-    sweetify.DEFAULT_OPTS = {
-    'showConfirmButton': True,
-    'timer': 2500,
-    'allowOutsideClick': True,
-    'confirmButtonText': 'OK',
-}
     header = {
             'Content-Type': 'application/json',
         }
