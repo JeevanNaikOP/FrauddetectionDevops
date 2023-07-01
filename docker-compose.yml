@@ -1,0 +1,30 @@
+version: '3.7'
+
+services:
+  nginx:
+    container_name: FraudetectionDevops
+    build: ./nginx
+    volumes:
+      - static:/static
+    ports:
+      - "9033:80"
+    depends_on:
+      - django_gunicorn
+    networks:
+      - mynetwork
+  django_gunicorn:
+    container_name: django_gunicorn
+    volumes:
+      - static:/static
+    env_file:
+      - .env
+    build:
+      context: .
+    ports:
+      - "8000"
+    networks:
+      - mynetwork
+volumes:
+  static:
+networks:
+  mynetwork:
